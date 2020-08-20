@@ -1,5 +1,5 @@
 const { promisify } = require('util');
-const figlet = promisify(require('figlet'))
+const figlet = promisify(require('figlet'));
 
 const clear = require('clear');
 const chalk = require('chalk');

@@ -1,0 +1,20 @@
+{
+  "name": "Node_Learn",
+  "version": "1.0.0",
+  "description": "Node Learn pratice demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lexyguo/Node_Learn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lexyguo/Node_Learn/issues"
+  },
+  "homepage": "https://github.com/Lexyguo/Node_Learn#readme"
+}
