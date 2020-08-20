@@ -31,7 +31,7 @@ module.exports = async name => {
 
   // 安装依赖
   log('安装依赖')
-  await spawn('npm', ['install'], { cwd: `./${name}` })
+  // await spawn('npm', ['install'], { cwd: `./${name}` })
   log(`
   👌安装完成：
   To get Start:
@@ -40,4 +40,10 @@ module.exports = async name => {
   npm run serve
   ===========================
   `)
+
+  const open = require('open')
+  // 打开浏览器
+  open('http://localhost:8080')
+  // 运行项目
+  await spawn('npm', ['run', 'serve'], { cwd: `./${name}` })
 }
