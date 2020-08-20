@@ -20,7 +20,7 @@ const spawn = async (...args) => {
   })
 }
 
-module.exports.init = async name => {
+module.exports = async name => {
   clear(); // 清屏
   const data = await figlet('Lexy HOLA!')
   log(data)
@@ -32,12 +32,12 @@ module.exports.init = async name => {
   // 安装依赖
   log('安装依赖')
   await spawn('npm', ['install'], { cwd: `./${name}` })
-  log(chalk.green(`
+  log(`
   👌安装完成：
   To get Start:
   ===========================
   cd ${name}
   npm run serve
   ===========================
-  `))
+  `)
 }
