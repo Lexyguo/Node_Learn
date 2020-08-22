@@ -4,13 +4,19 @@ const request = require('./request')
 const response = require('./response')
 
 class fKoa {
+  constructor() {
+    this.middlewares = []
+  }
   listen(...args) {
     // 创建server
-    const server = http.createServer((req, res) => {
+    const server = http.createServer(async (req, res) => {
       // 创建上下文
       const ctx = this.createContext(req, res)
 
-      this.callback(ctx)
+      // this.callback(ctx)
+      // 合成
+      const fn = this.compose(this.middlewares)
+      await fn(ctx)
 
       // 数据响应
       res.end(ctx.body)
@@ -20,8 +26,11 @@ class fKoa {
     server.listen(...args)
   }
 
-  use(callback) {
-    this.callback = callback
+  // use(callback) {
+  //   this.callback = callback
+  // }
+  use(middlewares) {
+    this.middlewares.push(middlewares)
   }
 
   /**
@@ -37,6 +46,27 @@ class fKoa {
     ctx.req = ctx.request.req = req
     ctx.res = ctx.response.res = res
     return ctx
+  }
+
+  /**
+   * 合成函数
+   * @param {*} middlewares 
+   */
+  compose = (middlewares) => {
+    return function (ctx) {
+      return dispatch(0)
+      function dispatch(i) {
+        let fn = middlewares[i]
+        if (!fn) {
+          return Promise.resolve()
+        }
+        return Promise.resolve(
+          fn(ctx, function next() {
+            return dispatch(i + 1)
+          })
+        )
+      }
+    }
   }
 }
 
