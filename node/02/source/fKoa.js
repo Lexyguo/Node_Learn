@@ -1,10 +1,19 @@
 const http = require('http');
+const context = require('./context')
+const request = require('./request')
+const response = require('./response')
 
 class fKoa {
   listen(...args) {
     // 创建server
     const server = http.createServer((req, res) => {
-      this.callback(req, res)
+      // 创建上下文
+      const ctx = this.createContext(req, res)
+
+      this.callback(ctx)
+
+      // 数据响应
+      res.end(ctx.body)
     })
 
     // 启动监听
@@ -13,6 +22,21 @@ class fKoa {
 
   use(callback) {
     this.callback = callback
+  }
+
+  /**
+   * 创建上下文
+   * @param {*} req 
+   * @param {*} res 
+   */
+  createContext(req, res) {
+    const ctx = Object.create(context)
+    ctx.request = Object.create(request)
+    ctx.response = Object.create(response)
+
+    ctx.req = ctx.request.req = req
+    ctx.res = ctx.response.res = res
+    return ctx
   }
 }
 

@@ -10,9 +10,13 @@
 
 const koa = require('./fKoa')
 const app = new koa()
-app.use((req, res) => {
-  res.writeHead(200)
-  res.end('API success Lexy')
+// app.use((req, res) => {
+//   res.writeHead(200)
+//   res.end('API success Lexy')
+// })
+
+app.use(ctx => {
+  ctx.body = '1'
 })
 
 app.listen(3000, () => {
