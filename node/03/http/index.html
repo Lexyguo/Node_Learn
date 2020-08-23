@@ -8,7 +8,7 @@
     // 步骤: 1、在接口中添加 Access-Control-Allow-Origin 对api地址的访问允许
     //       2、通过修改baseURL⽅式
     // 原理：cors是w3c规范，真正意义上解决跨域问题。它需要服务器对请求进⾏检查并对响应头做相应处理，从⽽允许跨域请求。
-    axios.defaults.baseURL = "http://localhost:3000/";
+    // axios.defaults.baseURL = "http://localhost:3000/";
     axios.defaults.withCredentials = true;
     const res = await axios.get("/api/users");
     console.log("data", res.data);
