@@ -1,0 +1,17 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  (async () => {
+    // 跨域：浏览器同源策略引起的接⼝调⽤问题
+    // 方法1、JSONP(JSON with Padding)，前端+后端⽅案，绕过跨域
+    // 方法2、代理服务器
+    // 方法3、CORS(Cross Origin Resource Share) - 跨域资源共享，后端⽅案，解决跨域
+    // 步骤: 1、在接口中添加 Access-Control-Allow-Origin 对api地址的访问允许
+    //       2、通过修改baseURL⽅式
+    // 原理：cors是w3c规范，真正意义上解决跨域问题。它需要服务器对请求进⾏检查并对响应头做相应处理，从⽽允许跨域请求。
+    axios.defaults.baseURL = "http://localhost:3000/";
+    axios.defaults.withCredentials = true;
+    const res = await axios.get("/api/users");
+    console.log("data", res.data);
+    document.writeln(`Response : ${JSON.stringify(res.data)}`);
+  })();
+</script>
