@@ -9,9 +9,18 @@
     //       2、通过修改baseURL⽅式
     // 原理：cors是w3c规范，真正意义上解决跨域问题。它需要服务器对请求进⾏检查并对响应头做相应处理，从⽽允许跨域请求。
     // axios.defaults.baseURL = "http://localhost:3000/";
-    axios.defaults.withCredentials = true;
-    const res = await axios.get("/api/users");
-    console.log("data", res.data);
-    document.writeln(`Response : ${JSON.stringify(res.data)}`);
+    // axios.defaults.withCredentials = true;
+    // const res = await axios.get("/api/users");
+    // console.log("data", res.data);
+    // document.writeln(`Response : ${JSON.stringify(res.data)}`);
+    await axios.post("/api/save", "a=1&b=3", {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
   })();
 </script>
+<form action="/api/save" method="post">
+  <input type="text" name="abc" value="123" />
+  <input type="submit" value="save" />
+</form>

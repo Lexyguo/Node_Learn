@@ -26,6 +26,23 @@ const app = http
             //     "Access-Control-Allow-Methods": "PUT"
             // });
             // res.end();
+        } else if (method === "POST" && url === "/api/save") {
+            let reqData = [];
+            let size = 0
+            req.on('data', data => {
+                console.log('data=>', data)
+                reqData.push(data)
+                size += data.length
+            })
+
+            req.on('end', () => {
+                const data = Buffer.concat(reqData, size)
+                console.log('data=>', data.toString())
+                res.end(`formdata: ${data.toString()}`)
+            })
+
+        } else if (method === "POST" && url === "/api/upload") {
+
         }
     });
 
