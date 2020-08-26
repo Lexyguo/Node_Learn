@@ -28,6 +28,8 @@
     "http-proxy-middleware": "^1.0.5",
     "koa": "^2.13.0",
     "open": "^7.1.0",
-    "ora": "^5.0.0"
+    "ora": "^5.0.0",
+    "sequelize": "^6.3.4",
+    "sqlite3": "^4.2.0"
   }
 }
