@@ -6,11 +6,11 @@ module.exports = class Connection {
     }
 
     onConn(fn) {
-        this.event.on('connect', fn);
+        this.event.on('connect', (name) => fn(name));
     }
 
     connection(name) {
-        this.event.emit('connect')
+        this.event.emit('connect', name)
     }
     // ##END##
 }
