@@ -26,5 +26,5 @@ test('练习04 完成一个一对多查询', async () => {
     const ret = await Product.findAll({
         attributes: ['title']
     })
-    expect(JSON.parse(JSON.stringify(ret))).toEqual([{"title": "商品一"}, {"title": "商品二"}])
+    expect(JSON.parse(JSON.stringify(ret))).toEqual([{ "title": "商品一" }, { "title": "商品二" }])
 })
